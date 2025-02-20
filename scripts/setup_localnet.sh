@@ -6,17 +6,23 @@ if ! docker info > /dev/null 2>&1; then
     exit 1
 fi
 
-# Start localnet
-docker-compose up -d
+# Create network if it doesn't exist
+docker network create zeta-network || true
+
+# Start ZetaChain core services
+docker-compose up -d zeta-core observer-node validator-node aptos-node
 
 # Wait for services to be ready
-echo "Waiting for services to be ready..."
 sleep 30
 
 # Initialize Aptos node
 aptos node initialize --local-repository --with-faucet
 
 # Deploy gateway contract
-npm run deploy
+npm run deploy:gateway
 
-echo "Localnet setup complete!"
+# Initialize observer-validator setup
+npm run init:observers
+
+# Verify setup
+npm run verify:setup
