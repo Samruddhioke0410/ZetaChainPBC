@@ -1,10 +1,54 @@
-aptos-node:
-    image: aptoslabs/validator:devnet
+version: "3.8"
+
+services:
+  zeta-core:
+    image: zetachain/core:latest
     ports:
-      - "8080:8080"
-      - "9101:9101"
+      - "26657:26657"
     volumes:
-      - ./chains/aptos:/opt/aptos/etc
-    command: ["aptos-node", "--config", "/opt/aptos/etc/node.yaml"]
+      - ./config:/etc/zetachain
     networks:
       - zeta-network
+
+  observer-node-1:
+    image: zetachain/observer:latest
+    environment:
+      - OBSERVER_ID=1
+      - CHAIN_ID=1
+    volumes:
+      - ./config/observer-config.yaml:/etc/observer/config.yaml
+    networks:
+      - zeta-network
+
+  observer-node-2:
+    image: zetachain/observer:latest
+    environment:
+      - OBSERVER_ID=2
+      - CHAIN_ID=1
+    volumes:
+      - ./config/observer-config.yaml:/etc/observer/config.yaml
+    networks:
+      - zeta-network
+
+  observer-node-3:
+    image: zetachain/observer:latest
+    environment:
+      - OBSERVER_ID=3
+      - CHAIN_ID=1
+    volumes:
+      - ./config/observer-config.yaml:/etc/observer/config.yaml
+    networks:
+      - zeta-network
+
+  aptos-node:
+    image: aptoslabs/validator:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config/aptos:/opt/aptos/config
+    networks:
+      - zeta-network
+
+networks:
+  zeta-network:
+    driver: bridge
