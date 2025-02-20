@@ -1,0 +1,10 @@
+aptos-node:
+    image: aptoslabs/validator:devnet
+    ports:
+      - "8080:8080"
+      - "9101:9101"
+    volumes:
+      - ./chains/aptos:/opt/aptos/etc
+    command: ["aptos-node", "--config", "/opt/aptos/etc/node.yaml"]
+    networks:
+      - zeta-network
