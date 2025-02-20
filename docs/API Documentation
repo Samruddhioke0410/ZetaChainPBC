@@ -1,13 +1,13 @@
-# API Documentation
+#API Documentation
 
-## Quick Start Guide
+##Quick Start Guide
 
-### Authentication
+###Authentication
 No authentication required for local development. For production, configure gateway address in environment variables.
 
-## Gateway Functions
+##Gateway Functions
 
-### deposit()
+###deposit()
 Transfer tokens across chains.
 
 deposit<CoinType>(
@@ -26,7 +26,7 @@ recipient: vector<u8>
 **Returns:**
 - None (emits DepositEvent)
 
-### withdraw()
+###withdraw()
 Process incoming cross-chain transfers.
 
 withdraw<CoinType>(
@@ -45,9 +45,9 @@ source_chain_id: u64
 **Returns:**
 - None (emits WithdrawalEvent)
 
-## Events
+##Events
 
-### DepositEvent
+###DepositEvent
 struct DepositEvent {
 sender: address,
 recipient: vector<u8>,
@@ -56,7 +56,7 @@ destination_chain_id: u64,
 timestamp: u64
 }
 
-### WithdrawalEvent
+###WithdrawalEvent
 struct WithdrawalEvent {
 recipient: address,
 amount: u64,
@@ -65,7 +65,7 @@ timestamp: u64
 }
 
 
-## Error Codes
+##Error Codes
 
 - 1: Not authorized
 - 2: Gateway paused
