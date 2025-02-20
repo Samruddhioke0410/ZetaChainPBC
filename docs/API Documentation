@@ -1,0 +1,73 @@
+# API Documentation
+
+## Quick Start Guide
+
+### Authentication
+No authentication required for local development. For production, configure gateway address in environment variables.
+
+## Gateway Functions
+
+### deposit()
+Transfer tokens across chains.
+
+deposit<CoinType>(
+from: &signer,
+amount: u64,
+destination_chain_id: u64,
+recipient: vector<u8>
+)
+
+**Parameters:**
+- from: Sender's account signer
+- amount: Token amount to transfer
+- destination_chain_id: Target blockchain ID
+- recipient: Recipient address on destination chain
+
+**Returns:**
+- None (emits DepositEvent)
+
+### withdraw()
+Process incoming cross-chain transfers.
+
+withdraw<CoinType>(
+admin: &signer,
+recipient: address,
+amount: u64,
+source_chain_id: u64
+)
+
+**Parameters:**
+- admin: Gateway admin signer
+- recipient: Receiving address
+- amount: Token amount
+- source_chain_id: Origin chain ID
+
+**Returns:**
+- None (emits WithdrawalEvent)
+
+## Events
+
+### DepositEvent
+struct DepositEvent {
+sender: address,
+recipient: vector<u8>,
+amount: u64,
+destination_chain_id: u64,
+timestamp: u64
+}
+
+### WithdrawalEvent
+struct WithdrawalEvent {
+recipient: address,
+amount: u64,
+source_chain_id: u64,
+timestamp: u64
+}
+
+
+## Error Codes
+
+- 1: Not authorized
+- 2: Gateway paused
+- 3: Invalid amount
+- 4: Already initialized
