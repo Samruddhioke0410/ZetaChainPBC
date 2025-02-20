@@ -1,0 +1,24 @@
+observers:
+  - id: "observer-1"
+    endpoint: "http://localhost:8081"
+    pubkey: "0x..."
+    voting_power: 1
+  - id: "observer-2"
+    endpoint: "http://localhost:8082"
+    pubkey: "0x..."
+    voting_power: 1
+  - id: "observer-3"
+    endpoint: "http://localhost:8083"
+    pubkey: "0x..."
+    voting_power: 1
+
+threshold:
+  minimum_validators: 3
+  signature_threshold: 2
+
+chains:
+  aptos:
+    chain_id: 1
+    gateway_address: "0x1"
+    block_confirmation: 1
+    gas_price_multiplier: 1.1
