@@ -1,0 +1,12 @@
+{
+  "chain_id": 1,
+  "name": "aptos",
+  "rpc_endpoint": "http://localhost:8080",
+  "gateway_address": "0x1",
+  "enabled": true,
+  "confirmations": 1,
+  "gas_price_multiplier": 1.1,
+  "block_time": 1,
+  "max_gas_price": 100000000,
+  "min_gas_price": 1000
+}
