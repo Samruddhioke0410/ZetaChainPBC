@@ -10,7 +10,7 @@ A complete implementation of a ZetaChain gateway for Aptos blockchain, enabling 
 - Automatic transaction verification
 - Event monitoring system
 - Cross-chain message passing
--wh
+
 ## Technical Architecture
 
 ### 1. Gateway Contract
